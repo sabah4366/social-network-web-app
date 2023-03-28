@@ -1,0 +1,91 @@
+{% extends 'base.html'%}
+{% block content%}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+                <div class="container-fluid   mb-5">            
+                    <div class="container">
+                        <div class="row  text-dark">
+                        <div class="col-md-3 border-right">
+                            {% if profile%}
+                            <div class="d-flex flex-column align-items-center text-center  mt-4">
+                                <img class="rounded-circle " width="150px" src="{{profile.profile_pic.url}}">
+                            </div>
+                            {% endif%}
+                        </div>
+                        <div class="col-md-5 border-right">
+                            
+                            <div class="p-3 py-5">
+                                <div class="row">
+                                    <h4>{{profile.user.username}}</h4>
+                                    <div class="col-4">
+                                        <h6>{{0}} Posts</h6>
+                                    </div>
+                                    <div class="col-4">
+                                        <h6>{{0}} Following</h6>
+                                    </div>
+                                    <div class="col-4">
+                                        <h6 style="margin: 0px;">{{0}} Followers</h6>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                    <h5>{{profile.user.first_name}} {{profile.user.last_name}}</h5>
+                                    </div>
+                                </div>
+                        
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                            </div>
+                            
+                            
+                                <!-- <div class="row mt-1">
+                                    <div class="col-4  ">
+                                    <h5>Name</h5>
+                                    <h5>Bio</h5>
+                                    <h5>Phone No:</h5>
+                                    {% if request.user != profile.user%}
+                                        {% if msg == True %}
+                                        <form action="" method="POST">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary form-control">UnFollow</button>
+                                        </form> 
+                                        {% else %} 
+                                        <form action="" method="POST">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary form-control">Follow</button>
+                                        </form> 
+                                         {% endif %}
+                                    {% endif%}
+                                     
+                                    </div>
+                                    <div class="col-8 ">
+                                    <h5>: {{profile.user.username |capfirst}}</h5>
+                                    <h5>: {{profile.bio |capfirst}}</h5>
+                                    <h5>: {{profile.phone_no}}</h5>
+                                    
+                                    </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-3">Posts</div>
+                    
+                    <div class="col-3"></div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    </body>
+    </html>
+        </div>
+        <div class="col "></div>
+    </div>
+</div>
+{% endblock%}
+
+
