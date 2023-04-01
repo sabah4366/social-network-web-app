@@ -1,0 +1,60 @@
+{% extends 'base.html'%}
+{% block content%}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2">
+            
+        </div>
+        <div class="col-2"> 
+            <a onclick="history.back()">
+            <i class="fa-solid fa-arrow-left fa-2x m-2 text-dark"></i>
+            </a>
+        </div>
+        <div class="col-2 ">
+            <div class="card mt-4" style="width: 800px;">
+                <div class="row">
+                    <div class="col">
+                        {{post.location}}
+                    </div>
+                    <div class="col text-end">
+                        {% if request.user == post.user %}
+                        <div class="dropdown">
+                            <button class="btn  dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="{% url 'post-delete' post.id%}">Delete</a></li>
+                              <li><a class="dropdown-item" href="{% url 'post-update' post.id%}">Edit</a></li>
+                              
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <img src="{{post.post.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col-2">
+                                    <i class="fa-regular mt-1 ms-2 fa-2x fa-heart"></i>
+                                </div>
+                                <div class="col-2">
+                                    <a href="{% url 'post-comment' post.id%}"><i class="fa-regular mt-1 text-dark fa-2x fa-comment"></i></a>
+                                </div>
+                            </div>
+                            <p class="card-title">{{post.description}}</p>
+                        </div>
+                        <div class="col text-end">
+                            <p class="card-text">{{post.created |timesince}} ago</p>
+                        </div>
+                    </div>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+{% endblock%}

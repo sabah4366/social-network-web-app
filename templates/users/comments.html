@@ -1,0 +1,50 @@
+{% extends 'base.html'%}
+{% block content%}
+
+<div class="container-fluid">
+    <div class="row">
+        
+        <div class="col-2">
+            
+        </div>
+        <div class="col-4 bg-dark  text-center" style="padding-top: 200px; padding-bottom: 200px;">
+            <a onclick="history.back()" >
+                <i class="fa-solid text-start  fa-arrow-left fa-2x m-2 text-white" ></i>
+            </a>
+            <img src="{{post.post.url}}" alt="" style="height:550px ;width: 500px;">
+        </div>
+        <div class="col-3">
+            <h1>Comments</h1>
+            <form action="" method="post" >
+                {% csrf_token%}
+                <div>
+                <input class="form-control border border-dark" placeholder="Add a comment" type="text" name="comment" id="" required>
+                </div>
+            </form>
+            {% for comment in comments%}
+                    <div class="card mt-2">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-1">
+                                    <img src="{{comment.profile.profile_pic.url}}" alt="Avatar" style="border-radius: 80%;height: 40px;">
+                                </div>
+                                <div class="col">
+                                    <a href="{% url 'other-user' comment.user.id %}" class=" m-3 text-dark fw-bold" style="text-decoration: none;">
+                                        {{comment.user}}
+                                    
+                                    </a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="card-body">
+                          <p class="card-text">{{comment.comment}}</p>
+                        </div>
+                      </div>
+                    {% endfor %}    
+            
+            
+        </div>
+    </div>
+</div>
+{% endblock%}

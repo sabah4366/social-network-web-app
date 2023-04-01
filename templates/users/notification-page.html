@@ -4,11 +4,43 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-2"></div>
-        <div class="col-6">
-            <h1>Notifications</h1>
-            <h1>Notification Page</h1>
+        <div class="col-2">
+            
+        
         </div>
-        <div class="col "></div>
+        <div class="col-4 ">
+            <h1>Notifications</h1>
+            {% for user in followers%}
+            <div class="card mb-3"> 
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-1">
+                      
+                      <img src="{{user.user.profile_pic.url}}" alt="Avatar" style="border-radius: 80%;height: 40px;">
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-2">
+                                <a href="{% url 'other-user' user.id%}" style="text-decoration: none;">
+                                    <h5 class="card-title text-dark mt-2">{{user}}</h5>
+                                </a>
+                            </div>
+                            <div class="col mt-2">
+                                <span >started following you.</span>
+                                {% if user.follower  %}
+                                    {{ user.profile.bio }}
+                                    
+                                {% endif %}
+                            </div>
+                        </div>
+                      
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
 {% endblock%}

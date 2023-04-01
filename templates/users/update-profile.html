@@ -1,0 +1,48 @@
+{% extends 'base.html'%}
+{% block content%}
+
+<div class="container-fluid">
+    <div class="row">
+        {% if messages%}
+    <div class="row">
+        <div class="col-4"></div>
+            <div class="col-4">
+            {% for msg in messages%}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{msg}}</strong> 
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+            {%endfor%}
+            </div>
+        <div class="col-4"></div>
+     </div>
+    {% endif%}
+        <div class="col-2"></div>
+        <div class="col-6">
+            <h1 class="text-center">Update Profile</h1>
+            <form action="{% url 'update-profile' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token%}
+                <div><label>First Name:</label></div>
+                <div><input type="text" class="form-control" name="fname" value="{{user.first_name}}"  id="fname" required /></div>
+                <div><label>Last Name:</label></div>
+                <div> <input type="text" class="form-control" name="lname" id="lname" value="{{user.last_name}}"  required/></div>
+                <div><label>User Name: </label></div>
+                <div><input type="text" class="form-control" name="username" id="username" value="{{user.username}}"  required/></div>
+                <div><label>Email: </label></div>
+                <div><input type="email" class="form-control" name="email" id="email" value="{{user.email}}" required /></div>
+                <div><label>Profile Picture: </label></div>
+                <div><input type="file" class="form-control" name="profile-picture"    id="profile-picture" value="{{profile.profile_pic.url}}" required/></div>
+                <div><label>Bio: </label></div>
+                <div><input type="text" class="form-control" name="bio" id="bio"  value="{{profile.bio}}" required /></div>
+                <div><label>Phone No: </label></div>
+                <div><input type="number" class="form-control" name="phone-no" value="{{profile.phone_no}}" id="phone-no" required /></div>               
+                
+                <div>      
+                    <button class="form-control mt-3 btn btn-primary fw-bold" type="submit" value="Add">Update</button>
+                </div>
+            </form>
+        </div>
+        <div class="col "></div>
+    </div>
+</div>
+{% endblock%}

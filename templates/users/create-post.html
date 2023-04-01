@@ -4,10 +4,22 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-2"></div>
-        <div class="col-6">
-            <h1>Create Post</h1>
+        <div class="col-2">
+            
         </div>
-        <div class="col "></div>
+        <div class="col-4 mt-5 " >
+            <h1 class="text-center" style="margin-top:  200px;">Create Post</h1>
+            <form action="{% url 'create-post'%}" class="border p-3 " method="post" enctype="multipart/form-data">
+                {% csrf_token%}
+                <div><label>Post image:</label></div>
+                <div><input type="file" class="form-control" name="post"  id="post" required /></div>
+                <div><label>description:</label></div>
+                <div> <input type="text" class="form-control" name="description" id="description"  required/></div>
+                <div><label>location: </label></div>
+                <div><input type="text" class="form-control" name="location" id="location"  required/></div>
+                <button type="submit" class="form-control btn mt-3 btn-primary fw-bold" value="SUbmit">Submit</button>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock%}

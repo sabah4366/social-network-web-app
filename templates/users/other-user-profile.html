@@ -1,0 +1,119 @@
+{% extends 'base.html'%}
+{% block content%}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+                <div class="container-fluid   mb-5">            
+                    <div class="container">
+                        <div class="row  text-dark">
+                        <div class="col-md-3 border-right">
+                            
+                            {% if profile.profile_pic%}
+                            <div class="d-flex flex-column align-items-center text-center  mt-4">
+                                <img class="rounded-circle " width="150px" src="{{profile.profile_pic.url}}">
+                            </div>
+                            {% else %}
+                            <div class="d-flex flex-column align-items-center text-center  mt-4">
+                                <img class="rounded-circle " width="150px" src="https://cdn.vectorstock.com/i/preview-1x/77/30/default-avatar-profile-icon-grey-photo-placeholder-vector-17317730.jpg">
+                            </div>
+                            {% endif%}
+                        </div>
+                        <div class="col-md-5 border-right">
+                            
+                            <div class="p-3 py-5">
+                                <div class="row mb-2">
+                                    <div class="col-3">
+                                        <h4>{{profile.user.username}}</h4>
+                                    </div>
+                                    <div class="col-6 ms-3 mb-2 ">
+                                        {% if request.user != profile.user%}
+                                        {% if msg == True%}
+                                        <form action="{% url 'add-follow' profile.user.id %}" method="post">
+                                            {% csrf_token %}
+                                        <button class="btn btn-primary ps-4 pe-4 fw-bold" type="submit">Unfollow</button>
+                                        </form>
+                                        {% else %}
+                                        <form action="{% url 'add-follow' profile.user.id %}" method="post">
+                                            {% csrf_token %}
+                                        <button class="btn btn-primary ps-4 pe-4 fw-bold" type="submit">Follow</button>
+                                        </form>
+                                        {% endif %}
+                                    {% endif %}                                        
+                                    </div>
+                                    
+                                <div class="row">
+                                    
+                                    <div class="col-4">
+                                        <h6>{{post_count}} Posts</h6>
+                                    </div>
+                                    <div class="col-4">
+                                        <h6>{{following}} Following</h6>
+                                    </div>
+                                    <div class="col-4">
+                                        <h6 style="margin: 0px;">{{followers}} Followers</h6>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col mt-2">
+                                    <h5>{{profile.user.first_name}} {{profile.user.last_name}}</h5>
+                                    <p>{{profile.bio}}</p>
+                                    </div>
+                                </div>
+                        
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-3">Posts</div>
+                    {% if posts%}
+                        <div class="row">
+                            {% for post in posts%}
+                            <div class="col-3">
+                                <div class="card mt-3">
+                                    <div class="card-body">
+                                    </div>
+                                    <a href="{% url 'post-detail' post.id%}">
+                                        <img src="{{post.post.url}}" class="card-img-bottom" alt="..." style="height: 170px;">
+                                    </a>
+                                    <div class="row">
+                                        
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                {% else %}
+                <div class="text-center">
+                <i class="fa-solid fa-5x mt-5 mb-4 fa-camera"></i>
+                <h3>No post yet</h3>
+                </div>
+                {% endif %}
+
+                    
+                    <div class="col-3"></div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    </body>
+    </html>
+        </div>
+        <div class="col "></div>
+    </div>
+</div>
+{% endblock%}
+
+

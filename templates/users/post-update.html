@@ -1,0 +1,48 @@
+{% extends 'base.html'%}
+{% block content%}
+<head>
+    <style>
+    input {
+        width: 580px;
+        border-radius: 10px;
+        padding: 3px;
+}
+textarea{
+    width: 580px;
+    border-radius: 10px;
+    padding: 3px;
+}
+#id_post{
+    border: 1px solid rgb(6, 0, 0);
+    
+}
+
+    </style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-2"></div>
+        <div class="col-4 mt-5">
+            <h1 class="text-center mt-5">Update Post</h1>
+            <form method="post"  enctype="multipart/form-data">
+                {% csrf_token %}
+                <div>
+                    <label class="fw-bold mb-2" for="">Post image:</label>
+                    <div class="post ">
+                        {{form.post}}
+                    </div>
+                    <label class="fw-bold mb-2" for="">Description:</label>
+                    <div>
+                        {{form.description}}
+                    </div>
+                    <label class="fw-bold mb-2" for="">Location:</label>
+                    <div>
+                    {{form.location}}
+                    </div>
+                </div>
+                <input class="form-control btn fw-bold mt-3 btn-primary" type="submit" value="Update">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock%}
