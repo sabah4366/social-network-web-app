@@ -9,4 +9,4 @@ Technologies:
 -Bootstrap5
 
 Clone the repository:
-git clone https://github.com/
+git clone https://github.com/sabah4366/social-network-web-app
